@@ -2,9 +2,15 @@
 
 const { execSync } = require('child_process');
 
-const runCommand = (command) => {
+const switchToDefaultColor = `\x1b[0m`;
+const switchToGreenColor = `\x1b[32m`;
+const switchToRedColor = `\x1b[31m`;
+const switchToBlueColor = `\x1b[34m`;
+const switchToyellowColor = `\x1b[33m`;
+
+const runCommand = (command, { mute = false } = {}) => {
   try {
-    execSync(`${command}`, { stdio: 'inherit' });
+    execSync(`${command}`, { stdio: mute ? 'pipe' : 'inherit' });
   } catch (e) {
     console.error(`Failed to execute ${command}`, e);
     return false;
@@ -12,7 +18,7 @@ const runCommand = (command) => {
   return true;
 };
 
-const repoName = process.argv[2];
+const repoName = process.argv[2] ?? 'example';
 const gitCheckoutCommand = `git clone https://github.com/rua109/create-react-app-swc.git ${repoName}`;
 const installDepsCommand = `cd ${repoName} && npm install`;
 const initGitCommand = `cd ${repoName} && rm -rf .git && git init && git add . && git commit -m "Initialize project using Create React app swc"`;
@@ -23,30 +29,35 @@ if (!checkedOut) {
   process.exit(-1);
 }
 
-console.log(`Installing packages. This may take a couple of minutes.`);
+console.log(`
+Installing packages. This may take a couple of minutes.
+`);
 const installedDeps = runCommand(installDepsCommand);
 if (!installedDeps) {
   process.exit(-1);
 }
 
-const initializedGit = runCommand(initGitCommand);
+const initializedGit = runCommand(initGitCommand, { mute: true });
 if (!initializedGit) {
   process.exit(-1);
 }
-console.log(`Created git commit.`);
+console.log(`
+Created git commit.
+`);
 
-console.log(`Success! created ${repoName}
+console.log(`
+Success! created ${repoName}
 Inside the directory you can run several commands.
 
-npm run start
+${switchToBlueColor} npm run start ${switchToDefaultColor}
   Starts the development server
 
-npm run storybook
+${switchToBlueColor} npm run storybook ${switchToDefaultColor}
   Starts the storybook 
 
-npm run test
+${switchToBlueColor} npm run test ${switchToDefaultColor}
   Runs the jest test
 
-npm run build
+${switchToBlueColor} npm run build ${switchToDefaultColor}
   Creates a build
 `);
