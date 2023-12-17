@@ -1,0 +1,55 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "plugin:jsdoc/recommended",
+    "plugin:storybook/recommended"
+  ],
+  "overrides": [],
+  "parserOptions": {
+    "project": ["tsconfig.json"],
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.stories.tsx", "**/*.test.tsx", "**/*.test.ts"]
+      }
+    ],
+    "import/order": ["warn", { "newlines-between": "always" }],
+
+    /** begin:  Standard: https://github.com/standard/standard */
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "semi": "off",
+    "comma-dangle": "off",
+    "space-before-function-paren": "off",
+    /** end*/
+
+    "no-console": "error",
+    "jsdoc/require-returns": 0,
+    "jsdoc/check-tag-names": [
+      "error",
+      { "definedTags": ["format", "jest-environment"] }
+    ],
+    "jsdoc/require-jsdoc": ["error", { "contexts": ["TSPropertySignature"] }],
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

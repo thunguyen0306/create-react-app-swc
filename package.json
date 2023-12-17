@@ -1,5 +1,5 @@
 {
-  "name": "react",
+  "name": "@rua109/create-react-app-swc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -24,6 +24,7 @@
     "url": "https://github.com/rua109/React/issues"
   },
   "homepage": "https://github.com/rua109/React#readme",
+  "bin": "./bin/cli.js",
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.4",
     "@storybook/addon-interactions": "^7.6.4",
