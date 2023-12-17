@@ -38,6 +38,8 @@ if (!installedDeps) {
   process.exit(-1);
 }
 
+updatePackage({ name: repoName, author: 'Unknown' });
+
 const initializedGit = runCommand(initGitCommand, { mute: true });
 if (!initializedGit) {
   process.exit(-1);
@@ -49,9 +51,6 @@ const cleanedDir = runCommand(cleanupDir, { mute: true });
 if (!cleanedDir) {
   process.exit(-1);
 }
-
-updatePackage({ name: repoName, author: 'unknown' });
-
 console.log(`Success! created ${repoName}
 Inside the directory you can run several commands.
 
