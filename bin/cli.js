@@ -40,6 +40,11 @@ if (!installedDeps) {
 
 updatePackage({ name: repoName, author: 'Unknown' });
 
+const cleanedDir = runCommand(cleanupDir, { mute: true });
+if (!cleanedDir) {
+  process.exit(-1);
+}
+
 const initializedGit = runCommand(initGitCommand, { mute: true });
 if (!initializedGit) {
   process.exit(-1);
@@ -47,10 +52,6 @@ if (!initializedGit) {
 console.log(`Created git commit.
 `);
 
-const cleanedDir = runCommand(cleanupDir, { mute: true });
-if (!cleanedDir) {
-  process.exit(-1);
-}
 console.log(`Success! created ${repoName}
 Inside the directory you can run several commands.
 
