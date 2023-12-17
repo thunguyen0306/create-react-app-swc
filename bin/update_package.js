@@ -1,11 +1,17 @@
 const fs = require('fs');
+const path = require('path');
 
 const PACKAGE_NAME = `package.json`;
 
 function updatePackage({ name, author }) {
   try {
+    console.log(`updating ${name}/${PACKAGE_NAME}
+    `);
+    // Resolve the full path to package.json
+    const filePath = path.resolve(`${name}/${PACKAGE_NAME}`);
+
     // Read the package.json file
-    const packageJson = require(PACKAGE_NAME);
+    const packageJson = require(filePath);
 
     // Update the name property
     packageJson.name = name;
@@ -15,10 +21,12 @@ function updatePackage({ name, author }) {
     packageJson.author = author;
     // delete license
     delete packageJson.license;
+    // delete scripts
+    delete packageJson.scripts.pub;
     // Docs
     delete packageJson.directories;
     // Repository
-    delete packageJson.respository;
+    delete packageJson.repository;
     // bugs
     delete packageJson.bugs;
     // home page
