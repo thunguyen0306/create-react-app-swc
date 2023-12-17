@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { execSync } = require('child_process');
-const { updatepackage } = require('./update_package');
+const { updatePackage } = require('./update_package');
 
 const switchToDefaultColor = `\x1b[0m`;
 const switchToGreenColor = `\x1b[32m`;
@@ -50,7 +50,7 @@ if (!cleanedDir) {
   process.exit(-1);
 }
 
-updatepackage({ name: repoName, author: 'unknown' });
+updatePackage({ name: repoName, author: 'unknown' });
 
 console.log(`Success! created ${repoName}
 Inside the directory you can run several commands.
