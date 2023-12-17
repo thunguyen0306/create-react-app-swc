@@ -1,6 +1,6 @@
 {
   "name": "@rua109/create-react-app-swc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rua109/React.git"
+    "url": "git+https://github.com/rua109/create-react-app-swc.git"
   },
   "author": "rua109",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rua109/React/issues"
+    "url": "https://github.com/rua109/create-react-app-swc/issues"
   },
-  "homepage": "https://github.com/rua109/React#readme",
+  "homepage": "https://github.com/rua109/create-react-app-swc#readme",
   "bin": "./bin/cli.js",
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.4",
