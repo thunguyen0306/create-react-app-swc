@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { execSync } = require('child_process');
+const { updatepackage } = require('./update_package');
 
 const switchToDefaultColor = `\x1b[0m`;
 const switchToGreenColor = `\x1b[32m`;
@@ -22,6 +23,7 @@ const repoName = process.argv[2] ?? 'example';
 const gitCheckoutCommand = `git clone https://github.com/rua109/create-react-app-swc.git ${repoName}`;
 const installDepsCommand = `cd ${repoName} && npm install`;
 const initGitCommand = `cd ${repoName} && rm -rf .git && git init && git add . && git commit -m "Initialize project using Create React app swc"`;
+const cleanupDir = `cd ${repoName} && rm -rf bin && rm -rf docs`;
 
 console.log(`Creating a new React app ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
@@ -29,8 +31,7 @@ if (!checkedOut) {
   process.exit(-1);
 }
 
-console.log(`
-Installing packages. This may take a couple of minutes.
+console.log(`Installing packages. This may take a couple of minutes.
 `);
 const installedDeps = runCommand(installDepsCommand);
 if (!installedDeps) {
@@ -41,12 +42,17 @@ const initializedGit = runCommand(initGitCommand, { mute: true });
 if (!initializedGit) {
   process.exit(-1);
 }
-console.log(`
-Created git commit.
+console.log(`Created git commit.
 `);
 
-console.log(`
-Success! created ${repoName}
+const cleanedDir = runCommand(cleanupDir, { mute: true });
+if (!cleanedDir) {
+  process.exit(-1);
+}
+
+updatepackage({ name: repoName, author: 'unknown' });
+
+console.log(`Success! created ${repoName}
 Inside the directory you can run several commands.
 
 ${switchToBlueColor} npm run start ${switchToDefaultColor}
