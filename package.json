@@ -1,5 +1,5 @@
 {
-  "name": "@rua109/create-react-app-swc",
+  "name": "tea-thunguyen0306",
   "version": "1.0.15",
   "description": "",
   "main": "index.js",
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rua109/create-react-app-swc.git"
+    "url": "git+https://github.com/thunguyen0306/create-react-app-swc.git"
   },
   "author": "rua109",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rua109/create-react-app-swc/issues"
+    "url": "https://github.com/thunguyen0306/create-react-app-swc/issues"
   },
-  "homepage": "https://github.com/rua109/create-react-app-swc#readme",
+  "homepage": "https://github.com/thunguyen0306/create-react-app-swc#readme",
   "bin": "./bin/cli.js",
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.4",
